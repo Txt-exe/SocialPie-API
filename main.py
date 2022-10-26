@@ -11,8 +11,8 @@ import os
 import time
 import spoticry
 
-
 loacation_used = []
+
 
 def printCommands():
     print("\n -s : Start Spotify module to listen to artist and get plays")
@@ -21,46 +21,45 @@ def printCommands():
     print("\n -c : Set combolist")
     print("\n -q : quit program")
 
-#gets combo list and stores 
-def getCombo():
+
+# gets combo list and stores
+def get_combo():
     list_num = int(input("How many combo list would you like to store?: "))
 
     list_inputP = list_num
 
     for x in range(list_num):
-        
         list_input = input("Please enter the full path of the location of your combo list: ")
         loacation_used.append(list_input)
 
+        # If file not found terminate program for safety reasons
+        assert os.path.exists(list_input), "\nIFatal error did not find file at path, Closing..., " + str(list_input)
 
-        #If file not found terminate program for safety reasons
-        assert os.path.exists(list_input), "\nIFatal error did not find file at path, Closing..., "+str(list_input)
-
-        f = open(list_input,'r+')
+        f = open(list_input, 'r+')
     print("\nStored Location")
     print("checking for duplicates and removing them...")
     time.sleep(2)
     print("Done\n")
-    
 
-    getCombo.combolist_l = set(loacation_used)
+    get_combo.combolist_l
+    get_combo.combolist_l = set(loacation_used)
 
-    #stuff you do with the file goes here
+    # stuff you do with the file goes here
     f.close()
 
 
-print('Welcome to Spoticry 2.0\n' )
+print('Welcome to Spoticry 2.0\n')
 
 print("-h for commands")
 
-waitforin  = " "
+waitforin = " "
 
 while waitforin != '-q':
     waitforin = input(">: ")
 
     if waitforin == '-h':
         printCommands()
-        
+
 
     elif waitforin == '-q':
         print("Exiting program...")
@@ -70,15 +69,12 @@ while waitforin != '-q':
         sys.exit()
 
     elif waitforin == '-c':
-        getCombo()
-    
+        get_combo()
 
-        
+
+
     elif waitforin == '-p':
-        print(combolist_l)
-        
-
-    
+        print(get_combo.combolist_l)
 
         """
     elif waitforin == '-s':
@@ -91,18 +87,16 @@ while waitforin != '-q':
             webdriver = driver.Chrome(options=chrome_options)
             spoticry.loadSpot(driver, combolist_l[x])
         """
-        
+
 
     else:
         print("Unauthorized input\n")
         printCommands()
 
+# print("Number of accounts in Combo List: ", len(acc))
+# artistpage = input('Enter Profile Link: ')
 
-#print("Number of accounts in Combo List: ", len(acc))
-#artistpage = input('Enter Profile Link: ')
-
-#songLink = input('Enter Song Link: ')
-
+# songLink = input('Enter Song Link: ')
 
 
-#loadSpot(webdriver)
+# loadSpot(webdriver)

@@ -11,7 +11,7 @@ import string
 
 
 
-def follwArtist(artistpage):
+def follw_artist(artistpage):
     #Follows Artist
     webdriver.get(artistpage)
     time.sleep(random.randint(3, 5))
@@ -20,7 +20,7 @@ def follwArtist(artistpage):
     time.sleep(3)
 
 #Loads All accounts from the combo list file
-def loadSpot(webdriver, combo_list):
+def load_spot(webdriver, combo_list):
     
     print("grabbing accounts")
     with open("combo_list", "r") as f:
