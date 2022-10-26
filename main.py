@@ -12,9 +12,9 @@ import time
 import spoticry
 
 loacation_used = []
+global combo_lists
 
-
-def printCommands():
+def print_commands():
     print("\n -s : Start Spotify module to listen to artist and get plays")
     print("\n -f : Start Spotify module to follow artist of your choice")
     print("\n -p : Print The Combo List")
@@ -41,10 +41,6 @@ def get_combo():
     time.sleep(2)
     print("Done\n")
 
-    get_combo.combolist_l
-    get_combo.combolist_l = set(loacation_used)
-
-    # stuff you do with the file goes here
     f.close()
 
 
@@ -58,7 +54,7 @@ while waitforin != '-q':
     waitforin = input(">: ")
 
     if waitforin == '-h':
-        printCommands()
+        print_commands()
 
 
     elif waitforin == '-q':
@@ -74,10 +70,10 @@ while waitforin != '-q':
 
 
     elif waitforin == '-p':
-        print(get_combo.combolist_l)
+        print(set(loacation_used))
 
         """
-    elif waitforin == '-s':
+    elif waitforin == '-s':-p
     
         for x in range(len(combolist_l)):
             chrome_options = Options()
@@ -91,7 +87,7 @@ while waitforin != '-q':
 
     else:
         print("Unauthorized input\n")
-        printCommands()
+        print_commands()
 
 # print("Number of accounts in Combo List: ", len(acc))
 # artistpage = input('Enter Profile Link: ')
