@@ -50,6 +50,7 @@ print("-h for commands")
 
 waitforin = " "
 
+
 while waitforin != '-q':
     waitforin = input(">: ")
 
@@ -70,18 +71,30 @@ while waitforin != '-q':
 
 
     elif waitforin == '-p':
-        print(set(loacation_used))
 
-        """
-    elif waitforin == '-s':-p
-    
-        for x in range(len(combolist_l)):
+        if(len(set(loacation_used)) == 0):
+            print("I cant find any accounts right now...")
+        else:
+
+            print(set(loacation_used))
+
+
+
+
+
+
+
+    elif waitforin == '-s':
+
+        if(len(set(loacation_used)) == 0):
+            print("There hasn't been any accounts added to the program")
+        for x in range(len(set(loacation_used))):
             chrome_options = Options()
             chrome_options.add_extension(r'E:\\Creator\\VPNcrx.crx')
             chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
-            webdriver = driver.Chrome(options=chrome_options)
-            spoticry.loadSpot(driver, combolist_l[x])
+            driver = webdriver.Chrome(options=chrome_options)
+            spoticry.loadSpot(driver, set(loacation_used[x]))
         """
 
 
@@ -96,3 +109,4 @@ while waitforin != '-q':
 
 
 # loadSpot(webdriver)
+"""
