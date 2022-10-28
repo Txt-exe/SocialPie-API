@@ -41,9 +41,9 @@ def get_combo():
             loacation_used.append(list_input)
 
             # If file not found terminate program for safety reasons
-            # assert os.path.exists(list_input), "\nFatal error did not find file at path " + str(
-            # list_input)v
-
+            print(os.path.exists(list_input), "\nFatal error did not find file at path " + str(
+              list_input))
+            main()
             f = open(list_input, )
     print("\nStored Location")
     print("checking for duplicates and removing them...")
