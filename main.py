@@ -17,6 +17,7 @@ print('Welcome to Spoticry 2.0\n')
 
 print("-h for commands")
 
+
 def print_commands():
     print("\n -s : Start Spotify module to listen to artist and get plays")
     print("\n -f : Start Spotify module to follow artist of your choice")
@@ -40,10 +41,10 @@ def get_combo():
             loacation_used.append(list_input)
 
             # If file not found terminate program for safety reasons
-            assert os.path.exists(list_input), "\nIFatal error did not find file at path, Closing..., " + str(
-                list_input)
+            # assert os.path.exists(list_input), "\nFatal error did not find file at path " + str(
+            # list_input)v
 
-        f = open(list_input, 'r+')
+            f = open(list_input, )
     print("\nStored Location")
     print("checking for duplicates and removing them...")
     time.sleep(2)
@@ -52,17 +53,16 @@ def get_combo():
     f.close()
 
 
-
-
 def main():
 
-
     waitforin = " "
+    waitforin.strip()
 
     while waitforin != '-q':
         waitforin = input(">: ")
 
         if waitforin == '-h':
+
             print_commands()
 
 
@@ -86,15 +86,9 @@ def main():
 
                 print(set(loacation_used))
 
-
-
-
-
-
-
         elif waitforin == '-s':
 
-            if (len(set(loacation_used)) == 0):
+            if len(set(loacation_used)) == 0:
                 print("There hasn't been any accounts added to the program")
             for x in range(len(set(loacation_used))):
                 chrome_options = Options()
@@ -102,13 +96,10 @@ def main():
                 chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
                 driver = webdriver.Chrome(options=chrome_options)
-                spoticry.Spoticry.load_spot(driver, set(loacation_used[x]),
-                                   "https://open.spotify.com/track/12HLq6Udogz52kh7Rj3FMg?si=f926d06b2fdc489c")
+                spoticry.Spoticry.load_spot(driver, set(loacation_used),
+                                            "https://open.spotify.com/track/12HLq6Udogz52kh7Rj3FMg?si=f926d06b2fdc489c")
         else:
             print("Value not recognized...")
             print_commands()
 
-
 main()
-
-
