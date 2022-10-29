@@ -37,11 +37,12 @@ def get_combo():
         main()
     else:
         for x in range(int(list_num)):
-            list_input = input("Please enter the full path of the location of your combo list: ")
+            list_input = input(
+                "Please enter the full path of the location of your combo list: ")
             loacation_used.append(list_input)
 
             # If file not found terminate program for safety reasons
-            if not(os.path.exists(list_input)):
+            if not (os.path.exists(list_input)):
                 print("FILE NOT FOUND ")
                 main()
             f = open(list_input, )
@@ -64,18 +65,17 @@ def main():
 
             print_commands()
 
-
         elif waitforin == '-q':
             print("Exiting program...")
             time.sleep(2)
-            clearConsole = lambda: os.system('cls' if os.name in ('nt', 'dos') else 'clear')
+
+            def clearConsole(): return os.system(
+                'cls' if os.name in ('nt', 'dos') else 'clear')
             clearConsole()
             sys.exit()
 
         elif waitforin == '-c':
             get_combo()
-
-
 
         elif waitforin == '-p':
 
@@ -91,12 +91,14 @@ def main():
                 print("There hasn't been any accounts added to the program")
             for x in range(len(set(loacation_used))):
                 chrome_options = Options()
-                chrome_options.add_extension(r'C:\Users\Chiave\PycharmProjects\Spoticry\VPNcrx.crx')
-                chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"])
+                chrome_options.add_extension(
+                    r'C:\Users\Chiave\PycharmProjects\Spoticry\VPNcrx.crx')
+                chrome_options.add_experimental_option(
+                    "excludeSwitches", ["enable-logging"])
 
                 driver = webdriver.Chrome(options=chrome_options)
                 spoticry.Spoticry.load_spot(driver, set(loacation_used),
-                                            "https://open.spotify.com/track/12HLq6Udogz52kh7Rj3FMg?si=f926d06b2fdc489c")
+                                            "https://open.spotify.com/track/6emaRY97qI4JlEBQK7LUjU?si=86669d2d41c14e7f")
         else:
             print("Value not recognized...")
             print_commands()
