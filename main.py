@@ -69,8 +69,10 @@ def main():
             print("Exiting program...")
             time.sleep(2)
 
-            def clearConsole(): return os.system(
-                'cls' if os.name in ('nt', 'dos') else 'clear')
+            def clearConsole():
+                return os.system(
+                    'cls' if os.name in ('nt', 'dos') else 'clear')
+
             clearConsole()
             sys.exit()
 
@@ -89,16 +91,38 @@ def main():
 
             if len(set(loacation_used)) == 0:
                 print("There hasn't been any accounts added to the program")
-            for x in range(len(set(loacation_used))):
-                chrome_options = Options()
-                chrome_options.add_extension(
-                    r'C:\Users\Chiave\PycharmProjects\Spoticry\VPNcrx.crx')
-                chrome_options.add_experimental_option(
-                    "excludeSwitches", ["enable-logging"])
+            if len(set(loacation_used)) >= 1:
 
-                driver = webdriver.Chrome(options=chrome_options)
-                spoticry.Spoticry.load_spot(driver, set(loacation_used),
-                                            "https://open.spotify.com/track/6emaRY97qI4JlEBQK7LUjU?si=86669d2d41c14e7f")
+                min_time_to_play = input("what is the minimum (in minutes) would you like to play your song?: "
+                                         "(Before switching accounts): ")
+                try:
+                    int(min_time_to_play)
+
+                except:
+                    print("That's not an integer number.")
+                    main()
+                max_time_to_play = input("what is the maximum (in minutes) would you like to play your song?"
+                                         "(Before switching accounts): ")
+                try:
+                    int(max_time_to_play)
+
+                except:
+                    print("That's not an integer number.")
+                    main()
+                else:
+                    min_con = min_time_to_play * 60
+                    max_con = max_time_to_play * 60
+
+                    for x in range(len(set(loacation_used))):
+                        chrome_options = Options()
+                        chrome_options.add_extension(
+                            r'C:\Users\Chiave\PycharmProjects\Spoticry\VPNcrx.crx')
+                        chrome_options.add_experimental_option(
+                            "excludeSwitches", ["enable-logging"])
+
+                        driver = webdriver.Chrome(options=chrome_options)
+                        spoticry.Spoticry.load_spot(driver, set(loacation_used),
+                                                    "https://open.spotify.com/track/6emaRY97qI4JlEBQK7LUjU?si=86669d2d41c14e7f", min_con, max_con)
         else:
             print("Value not recognized...")
             print_commands()
