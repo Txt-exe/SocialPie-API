@@ -117,6 +117,8 @@ def main():
                         chrome_options = Options()
                         chrome_options.add_extension(
                             r'C:\Users\Chiave\PycharmProjects\Spoticry\VPNcrx.crx')
+                        chrome_options.add_extension(
+                            r'C:\Users\Chiave\PycharmProjects\Spoticry\Speed.crx')
                         chrome_options.add_experimental_option(
                             "excludeSwitches", ["enable-logging"])
 
