@@ -22,8 +22,9 @@ def print_commands():
     print("\n -s : Start Spotify module to listen to artist and get plays")
     print("\n -f : Start Spotify module to follow artist of your choice")
     print("\n -p : Print The Combo List")
-    print("\n -c : Set combolist")
+    print("\n -a : Add a list of accounts")
     print("\n -q : quit program")
+    print("\n -c : clear console")
 
 
 # gets combo list and stores
@@ -54,6 +55,11 @@ def get_combo():
     f.close()
 
 
+def clearConsole():
+    return os.system(
+        'cls' if os.name in ('nt', 'dos') else 'clear')
+
+
 def main():
     waitforin = " "
     waitforin.strip()
@@ -69,14 +75,13 @@ def main():
             print("Exiting program...")
             time.sleep(2)
 
-            def clearConsole():
-                return os.system(
-                    'cls' if os.name in ('nt', 'dos') else 'clear')
-
             clearConsole()
             sys.exit()
 
         elif waitforin == '-c':
+            clearConsole()
+
+        elif waitforin == '-a':
             get_combo()
 
         elif waitforin == '-p':
@@ -93,16 +98,16 @@ def main():
                 print("There hasn't been any accounts added to the program")
             if len(set(loacation_used)) >= 1:
 
-                min_time_to_play = input("what is the minimum (in minutes) would you like to play your song?: "
-                                         "(Before switching accounts): ")
+                min_time_to_play = int(input("what is the minimum (in minutes) would you like to play your song?: "
+                                             "(Before switching accounts): "))
                 try:
                     int(min_time_to_play)
 
                 except:
                     print("That's not an integer number.")
                     main()
-                max_time_to_play = input("what is the maximum (in minutes) would you like to play your song?"
-                                         "(Before switching accounts): ")
+                max_time_to_play = int(input("what is the maximum (in minutes) would you like to play your song?"
+                                             "(Before switching accounts): "))
                 try:
                     int(max_time_to_play)
 
@@ -124,7 +129,8 @@ def main():
 
                         driver = webdriver.Chrome(options=chrome_options)
                         spoticry.Spoticry.load_spot(driver, set(loacation_used),
-                                                    "https://open.spotify.com/track/6emaRY97qI4JlEBQK7LUjU?si=86669d2d41c14e7f", min_con, max_con)
+                                                    "https://open.spotify.com/track/6emaRY97qI4JlEBQK7LUjU?si=86669d2d41c14e7f",
+                                                    min_con, max_con)
         else:
             print("Value not recognized...")
             print_commands()
