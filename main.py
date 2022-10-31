@@ -45,7 +45,7 @@ def get_combo():
             # If file not found terminate program for safety reasons
             if not (os.path.exists(list_input)):
                 print("FILE NOT FOUND ")
-                set(loacation_used).remove(list_input)
+                loacation_used.remove(list_input)
                 main()
             f = open(list_input, )
     print("\nStored Location")
