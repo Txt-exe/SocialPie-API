@@ -140,7 +140,7 @@ class Spoticry:
                                                 '/html/body/div[4]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[1]/button[1]')
             randomnize.click()
             # Time to play artist randomly
-            time.sleep(random.randint(100, 150))
+            time.sleep(random.randint(60, 70))
             print("Playing Another Artist")
             webdriver.get(random.choice(ArtistA))
             time.sleep(random.randint(5, 7))
@@ -149,7 +149,7 @@ class Spoticry:
             randomplay.click()
             time.sleep(3)
             # Time to play artist randomly
-            time.sleep(random.randint(90, 160))
+            time.sleep(random.randint(60, 80))
             # Reverse Back to Song
             print("Playing your song again...")
             webdriver.get(songLink)
