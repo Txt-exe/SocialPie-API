@@ -119,7 +119,8 @@ def main():
                     max_con = max_time_to_play * 60
                     get_song = input("Enter link to spotify song: ")
                     if "https://open.spotify.com/track" not in get_song:
-                        print("This is not a spotify link, exiting...")
+                        print("This is not a spotify link (ex. https://open.spotify.com/track/12HLq0Udogz52kh7Rj3FMg"
+                              "?si=1a35f819ecbf4583&nd=1")
                         time.sleep(2)
                         main()
                     else:
