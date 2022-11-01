@@ -1,15 +1,7 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.keys import Keys
-import time
-import csv
-import random
-from progress.bar import ShadyBar
-import string
 import sys
 import os
 import time
-import spoticry
+from socialpie.spoticry import spoticry
 
 loacation_used = []
 
@@ -21,7 +13,7 @@ print("-h for commands")
 def print_commands():
     print("\n -ss : Start Spotify module to listen to artist and get plays")
     print("\n -sf : Start Spotify module to follow artist of your choice")
-    print("\n -sp : Print The Combo List")
+    print("\n -sp : Start Spotify module to print The Combo List")
     print("\n -sa : Add a list of accounts")
     print("\n -q : quit program")
     print("\n -c : clear console")
@@ -86,7 +78,7 @@ def main():
 
         elif waitforin == '-sp':
 
-            if (len(set(loacation_used)) == 0):
+            if len(set(loacation_used)) == 0:
                 print("I cant find any accounts right now...")
             else:
 
@@ -117,12 +109,14 @@ def main():
                 else:
                     min_con = min_time_to_play * 60
                     max_con = max_time_to_play * 60
+
                     get_song = input("Enter link to spotify song: ")
                     if "https://open.spotify.com/track" not in get_song:
                         print("This is not a spotify link (ex. https://open.spotify.com/track/12HLq0Udogz52kh7Rj3FMg"
                               "?si=1a35f819ecbf4583&nd=1")
                         time.sleep(2)
                         main()
+
                     else:
 
                         print("Opening Spotify, Please wait...")
