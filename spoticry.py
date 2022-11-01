@@ -6,12 +6,16 @@ import time
 import csv
 import random
 
-
+# Create Artist List Here
 with open('data/hiphop/artist1.csv', newline='') as f:
     reader = csv.reader(f)
     artist_a = list(reader)
+# Create Artist List Here
 
+
+# Driver array
 all_drivers = []
+
 global min_time_to_play
 global max_time_to_play
 
@@ -19,6 +23,7 @@ global max_time_to_play
 # Class for Spoticry Module
 class Spoticry:
 
+    # Opens list of accounts and creates windows based off of number of lines
     def open_accounts(accounts):
         global acc
         global passwrd
@@ -35,11 +40,10 @@ class Spoticry:
                 driver = webdriver.Chrome(options=chrome_options)
                 all_drivers.append(driver)
 
+    # Static method that logs in to Spotify using accounts list
     @staticmethod
     def load_spot():
         print("grabbing accounts")
-
-        # Goes through accounts until all are used
 
         x = len(acc)
         for x in range(len(acc)):
@@ -62,6 +66,7 @@ class Spoticry:
             testa.click()
             time.sleep(5)
 
+    # plays specific song [takes link as parameter]
     def play_song(songlink):
 
         x = len(acc)
@@ -88,10 +93,11 @@ class Spoticry:
                                                  '//*[@id="main"]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[2]/button[2]')
             repeat.click()
 
+    # Plays random song to throw off algorithm
     def play_random_song(songlink):
 
         x = len(acc)
-        # Get Random Artist to play
+
         print('Playing Random Artist to play based off selection...')
         all_drivers[x].get(random.choice(artist_a))
         time.sleep(4)
@@ -103,10 +109,10 @@ class Spoticry:
                                                  '/html/body/div[4]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[1]/button[1]')
         randomnize.click()
         # Time to play artist randomly
-        time.sleep(random.randint(60, 70))
+        time.sleep(random.randint(200, 400))
         print("Playing Another Artist")
         all_drivers[x].get(random.choice(artist_a))
-        time.sleep(random.randint(5, 7))
+        time.sleep(random.randint(200, 300))
         randomplay = all_drivers[x].find_element("xpath",
                                                  '//*[@id="main"]/div/div[2]/div[3]/div[1]/div[2]/div[2]/div/div/div[2]/main/section/div/div[2]/div[2]/div[4]/div/div/div/div/div/button')
         randomplay.click()

@@ -119,10 +119,10 @@ def main():
                     max_con = max_time_to_play * 60
 
                     for x in range(len(set(loacation_used))):
-
                         spoticry.Spoticry.open_accounts(loacation_used)
                         spoticry.Spoticry.load_spot()
-                        spoticry.Spoticry.play_song("https://open.spotify.com/track/6emaRY97qI4JlEBQK7LUjU?si=86669d2d41c14e7f")
+                        spoticry.Spoticry.play_song(
+                            "https://open.spotify.com/track/6emaRY97qI4JlEBQK7LUjU?si=86669d2d41c14e7f")
         else:
             print("Value not recognized...")
             print_commands()
