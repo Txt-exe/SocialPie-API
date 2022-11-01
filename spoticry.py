@@ -5,71 +5,16 @@ from selenium.webdriver.common.keys import Keys
 import time
 import csv
 import random
-import string
 
-ArtistA = [
 
-    # Kendrick Lamar
-    'https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg',
-
-    # Jcole
-    'https://open.spotify.com/artist/6l3HvQ5sa6mXTsMTB19rO5',
-
-    # Joey Bad A$$
-    'https://open.spotify.com/artist/2P5sC9cVZDToPxyomzF1UH',
-
-    # 2Chains
-    'https://open.spotify.com/artist/17lzZA2AlOHwCwFALHttmp',
-
-    # Asap Ferg
-    'https://open.spotify.com/artist/5dHt1vcEm9qb8fCyLcB3HL',
-
-    # Kid Cudi
-    'https://open.spotify.com/artist/0fA0VVWsXO9YnASrzqfmYu',
-
-    # Childish Gambino
-    'https://open.spotify.com/artist/73sIBHcqh3Z3NyqHKZ7FOL',
-
-    # Travis Scott
-    'https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY',
-
-    # Young Nudy
-    'https://open.spotify.com/artist/5yPzzu25VzEk8qrGTLIrE1',
-
-    # Tyga
-    'https://open.spotify.com/artist/5LHRHt1k9lMyONurDHEdrp',
-
-    # YG
-    'https://open.spotify.com/artist/0A0FS04o6zMoto8OKPsDwY',
-
-    # SBQ
-    'https://open.spotify.com/artist/5IcR3N7QB1j6KBL8eImZ8m',
-
-    # Future
-    'https://open.spotify.com/artist/1RyvyyTE3xzB2ZywiAwp0i',
-
-    # Tyler The Creator
-    'https://open.spotify.com/artist/4V8LLVI7PbaPR0K2TGSxFF',
-
-    # FredG
-    'https://open.spotify.com/artist/0Y4inQK6OespitzD6ijMwb',
-
-    # Asap Rocky
-    'https://open.spotify.com/artist/13ubrt8QOOCPljQ2FL1Kca',
-
-    # Vince Staples
-    'https://open.spotify.com/artist/68kEuyFKyqrdQQLLsmiatm',
-
-    # FBZ
-    'https://open.spotify.com/artist/1dqGS5sT6PE2wEvP1gROZC',
-
-    # JID
-    'https://open.spotify.com/artist/6U3ybJ9UHNKEdsH7ktGBZ7',
-]
+with open('data/hiphop/artist1.csv', newline='') as f:
+    reader = csv.reader(f)
+    artist_a = list(reader)
 
 all_drivers = []
 global min_time_to_play
 global max_time_to_play
+
 
 # Class for Spoticry Module
 class Spoticry:
@@ -93,7 +38,6 @@ class Spoticry:
     @staticmethod
     def load_spot():
         print("grabbing accounts")
-
 
         # Goes through accounts until all are used
 
@@ -146,47 +90,46 @@ class Spoticry:
 
     def play_random_song(songlink):
 
-            x = len(acc)
-            # Get Random Artist to play
-            print('Playing Random Artist to play based off selection...')
-            all_drivers[x].get(random.choice(ArtistA))
-            time.sleep(4)
-            randomplay = all_drivers[x].find_element("xpath",
-                                                '//*[@id="main"]/div/div[2]/div[3]/div[1]/div[2]/div[2]/div/div/div[2]/main/section/div/div[2]/div[2]/div[4]/div/div/div/div/div/button')
-            randomplay.click()
-            time.sleep(3)
-            randomnize = all_drivers[x].find_element("xpath",
-                                                '/html/body/div[4]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[1]/button[1]')
-            randomnize.click()
-            # Time to play artist randomly
-            time.sleep(random.randint(60, 70))
-            print("Playing Another Artist")
-            all_drivers[x].get(random.choice(ArtistA))
-            time.sleep(random.randint(5, 7))
-            randomplay = all_drivers[x].find_element("xpath",
-                                                '//*[@id="main"]/div/div[2]/div[3]/div[1]/div[2]/div[2]/div/div/div[2]/main/section/div/div[2]/div[2]/div[4]/div/div/div/div/div/button')
-            randomplay.click()
-            time.sleep(3)
-            # Time to play artist randomly
-            time.sleep(random.randint(60, 80))
-            # Reverse Back to Song
-            print("Playing your song again...")
-            all_drivers[x].get(songlink)
-            time.sleep(9)
-            playbutton = all_drivers[x].find_element("xpath",
-                                                '//*[@id="main"]/div/div[2]/div[3]/div[1]/div[2]/div[2]/div/div/div[2]/main/section/div[3]/div[4]/div/div/div/div/div/button')
-            playbutton.click()
-            time.sleep(random.randint(min_time_to_play, max_time_to_play))
-            print("Done, Logging out...")
-            all_drivers[x].get(
-                'https://www.spotify.com/us/account/overview/?utm_source=spotify&utm_medium=menu&utm_campaign=your_account')
-            time.sleep(3)
-            logout = all_drivers[x].find_element("xpath",
-                                            '//*[@id="__next"]/div/div/div[2]/div[3]/div[2]/div/div[2]/article/div[2]/a')
-            logout.click()
-            print("Logged out")
-            time.sleep(2)
-            # clear cookies before starting a new account
-            all_drivers[x].delete_all_cookies()
-            time.sleep(2)
-
+        x = len(acc)
+        # Get Random Artist to play
+        print('Playing Random Artist to play based off selection...')
+        all_drivers[x].get(random.choice(artist_a))
+        time.sleep(4)
+        randomplay = all_drivers[x].find_element("xpath",
+                                                 '//*[@id="main"]/div/div[2]/div[3]/div[1]/div[2]/div[2]/div/div/div[2]/main/section/div/div[2]/div[2]/div[4]/div/div/div/div/div/button')
+        randomplay.click()
+        time.sleep(3)
+        randomnize = all_drivers[x].find_element("xpath",
+                                                 '/html/body/div[4]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[1]/button[1]')
+        randomnize.click()
+        # Time to play artist randomly
+        time.sleep(random.randint(60, 70))
+        print("Playing Another Artist")
+        all_drivers[x].get(random.choice(artist_a))
+        time.sleep(random.randint(5, 7))
+        randomplay = all_drivers[x].find_element("xpath",
+                                                 '//*[@id="main"]/div/div[2]/div[3]/div[1]/div[2]/div[2]/div/div/div[2]/main/section/div/div[2]/div[2]/div[4]/div/div/div/div/div/button')
+        randomplay.click()
+        time.sleep(3)
+        # Time to play artist randomly
+        time.sleep(random.randint(60, 80))
+        # Reverse Back to Song
+        print("Playing your song again...")
+        all_drivers[x].get(songlink)
+        time.sleep(9)
+        playbutton = all_drivers[x].find_element("xpath",
+                                                 '//*[@id="main"]/div/div[2]/div[3]/div[1]/div[2]/div[2]/div/div/div[2]/main/section/div[3]/div[4]/div/div/div/div/div/button')
+        playbutton.click()
+        time.sleep(random.randint(min_time_to_play, max_time_to_play))
+        print("Done, Logging out...")
+        all_drivers[x].get(
+            'https://www.spotify.com/us/account/overview/?utm_source=spotify&utm_medium=menu&utm_campaign=your_account')
+        time.sleep(3)
+        logout = all_drivers[x].find_element("xpath",
+                                             '//*[@id="__next"]/div/div/div[2]/div[3]/div[2]/div/div[2]/article/div[2]/a')
+        logout.click()
+        print("Logged out")
+        time.sleep(2)
+        # clear cookies before starting a new account
+        all_drivers[x].delete_all_cookies()
+        time.sleep(2)
