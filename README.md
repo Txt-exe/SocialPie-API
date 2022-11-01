@@ -1,3 +1,3 @@
-# Spoticry
+# SocialPie
 
-A bot built to stream songs on spotify, manage accounts, and automate most task the day-to-day user does on spotify
+A bot built to stream songs on Spotify, manage accounts, gain Instagram followers, stream music on Pandora and much more
