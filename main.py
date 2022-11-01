@@ -29,7 +29,7 @@ def print_commands():
 
 # gets combo list and stores
 def get_combo():
-    list_num = input("How many combo list would you like to store?: ")
+    list_num = input("How many combo list's would you like to store?: ")
     try:
         int(list_num)
 
@@ -41,7 +41,7 @@ def get_combo():
             list_input = input(
                 "Please enter the full path of the location of your combo list: ")
             loacation_used.append(list_input)
-            # If file not found terminate program for safety reasons
+            # If file not found delete entry and return to program
             if not (os.path.exists(list_input)):
                 print("FILE NOT FOUND ")
                 loacation_used.remove(list_input)

@@ -23,7 +23,7 @@ global max_time_to_play
 # Class for Spoticry Module
 class Spoticry:
 
-    # Opens list of accounts and creates windows based off of number of lines
+    # Opens list of accounts and creates windows based off number of lines
     def open_accounts(accounts):
         global acc
         global passwrd
