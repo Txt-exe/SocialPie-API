@@ -41,7 +41,6 @@ def get_combo():
             list_input = input(
                 "Please enter the full path of the location of your combo list: ")
             loacation_used.append(list_input)
-
             # If file not found terminate program for safety reasons
             if not (os.path.exists(list_input)):
                 print("FILE NOT FOUND ")
@@ -56,7 +55,7 @@ def get_combo():
     f.close()
 
 
-def clearConsole():
+def clear_console():
     return os.system(
         'cls' if os.name in ('nt', 'dos') else 'clear')
 
@@ -76,11 +75,11 @@ def main():
             print("Exiting program...")
             time.sleep(2)
 
-            clearConsole()
+            clear_console()
             sys.exit()
 
         elif waitforin == '-c':
-            clearConsole()
+            clear_console()
 
         elif waitforin == '-a':
             get_combo()
@@ -120,18 +119,10 @@ def main():
                     max_con = max_time_to_play * 60
 
                     for x in range(len(set(loacation_used))):
-                        chrome_options = Options()
-                        chrome_options.add_extension(
-                            r'C:\Users\Chiave\PycharmProjects\Spoticry\VPNcrx.crx')
-                        chrome_options.add_extension(
-                            r'C:\Users\Chiave\PycharmProjects\Spoticry\Speed.crx')
-                        chrome_options.add_experimental_option(
-                            "excludeSwitches", ["enable-logging"])
 
-                        driver = webdriver.Chrome(options=chrome_options)
-                        spoticry.Spoticry.load_spot(driver, set(loacation_used),
-                                                    "https://open.spotify.com/track/6emaRY97qI4JlEBQK7LUjU?si=86669d2d41c14e7f",
-                                                    min_con, max_con)
+                        spoticry.Spoticry.open_accounts(loacation_used)
+                        spoticry.Spoticry.load_spot()
+                        spoticry.Spoticry.play_song("https://open.spotify.com/track/6emaRY97qI4JlEBQK7LUjU?si=86669d2d41c14e7f")
         else:
             print("Value not recognized...")
             print_commands()
