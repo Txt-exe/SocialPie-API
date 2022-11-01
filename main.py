@@ -13,16 +13,16 @@ import spoticry
 
 loacation_used = []
 
-print('Welcome to Spoticry 2.0\n')
+print('Welcome to SocialPie 2.0\n')
 
 print("-h for commands")
 
 
 def print_commands():
-    print("\n -s : Start Spotify module to listen to artist and get plays")
-    print("\n -f : Start Spotify module to follow artist of your choice")
-    print("\n -p : Print The Combo List")
-    print("\n -a : Add a list of accounts")
+    print("\n -ss : Start Spotify module to listen to artist and get plays")
+    print("\n -sf : Start Spotify module to follow artist of your choice")
+    print("\n -sp : Print The Combo List")
+    print("\n -sa : Add a list of accounts")
     print("\n -q : quit program")
     print("\n -c : clear console")
 
@@ -81,10 +81,10 @@ def main():
         elif waitforin == '-c':
             clear_console()
 
-        elif waitforin == '-a':
+        elif waitforin == '-sa':
             get_combo()
 
-        elif waitforin == '-p':
+        elif waitforin == '-sp':
 
             if (len(set(loacation_used)) == 0):
                 print("I cant find any accounts right now...")
@@ -92,7 +92,7 @@ def main():
 
                 print(set(loacation_used))
 
-        elif waitforin == '-s':
+        elif waitforin == '-ss':
 
             if len(set(loacation_used)) == 0:
                 print("There hasn't been any accounts added to the program")
