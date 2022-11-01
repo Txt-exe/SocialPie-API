@@ -7,7 +7,7 @@ import csv
 import random
 
 # Create Artist List Here
-with open('data/hiphop/artist1.csv', newline='') as f:
+with open('data/d_spoticry/hiphop/artist1.csv', newline='') as f:
     reader = csv.reader(f)
     artist_a = list(reader)
 # Create Artist List Here

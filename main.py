@@ -117,12 +117,19 @@ def main():
                 else:
                     min_con = min_time_to_play * 60
                     max_con = max_time_to_play * 60
+                    get_song = input("Enter link to spotify song: ")
+                    if "https://open.spotify.com/track" not in get_song:
+                        print("This is not a spotify link, exiting...")
+                        time.sleep(2)
+                        main()
+                    else:
 
-                    for x in range(len(set(loacation_used))):
-                        spoticry.Spoticry.open_accounts(loacation_used)
-                        spoticry.Spoticry.load_spot()
-                        spoticry.Spoticry.play_song(
-                            "https://open.spotify.com/track/6emaRY97qI4JlEBQK7LUjU?si=86669d2d41c14e7f")
+                        print("Opening Spotify, Please wait...")
+                        for x in range(len(set(loacation_used))):
+                            spoticry.Spoticry.open_accounts(loacation_used)
+                            spoticry.Spoticry.load_spot()
+                            spoticry.Spoticry.play_song(
+                                get_song)
         else:
             print("Value not recognized...")
             print_commands()
