@@ -10,7 +10,7 @@ import random
 with open('socialpie/data/d_spoticry/artist_hiphop/artist1.csv', newline='') as f:
     reader = csv.reader(f)
     artist_a = list(reader)
-# Create Artist List Here
+# Create Artist List Her
 
 
 # Driver array
