@@ -1,8 +1,11 @@
 import sys
 import os
 import time
+
+import socialpie
 from socialpie.spoticry import spoticry
 
+"""""
 loacation_used = []
 
 print('Welcome to SocialPie 2.0\n')
@@ -131,3 +134,9 @@ def main():
 
 
 main()
+"""
+
+accouis = ["C:\\Users\\Chiave\Desktop\\accounts\\raw.txt"]
+spoticry.open_accounts(accouis)
+
+spoticry.play_random_song()
