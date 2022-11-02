@@ -7,7 +7,7 @@ import csv
 import random
 
 # Create Artist List Here
-with open('../data/d_spoticry/artist_hiphop/artist1.csv', newline='') as f:
+with open('socialpie/data/d_spoticry/artist_hiphop/artist1.csv', newline='') as f:
     reader = csv.reader(f)
     artist_a = list(reader)
 # Create Artist List Here
@@ -24,6 +24,9 @@ global max_time_to_play
 class Spoticry:
 
     # Opens list of accounts and creates windows based off number of lines
+    def get_artist(artist_file):
+
+
     def open_accounts(accounts):
         global acc
         global passwrd
@@ -66,7 +69,7 @@ class Spoticry:
             testa.click()
             time.sleep(5)
 
-    # plays specific song [takes link as parameter]
+    # Plays specific song [takes link as parameter]
     def play_song(songlink):
 
         x = len(acc)
