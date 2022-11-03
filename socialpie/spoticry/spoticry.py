@@ -1,5 +1,6 @@
 from progress import bar
 from selenium import webdriver
+from selenium.common import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import time
@@ -11,11 +12,6 @@ all_drivers = []
 
 global min_time_to_play
 global max_time_to_play
-global acc
-
-
-# Class for Spoticry Module
-
 
 
 def get_artist(artist_file):
@@ -45,7 +41,6 @@ def open_accounts(accounts):
 
 
 # logs in to Spotify using accounts list
-
 def load_spot():
     print("grabbing accounts")
     x = len(acc)
@@ -55,17 +50,34 @@ def load_spot():
         print(" Logging in with: ", acc[x])
         all_drivers[x].get(
             "https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F")
-        time.sleep(5.0)
-        testb = all_drivers[x].find_element(
-            'xpath', '//*[@id="login-username"]')
+        all_drivers[x].implicitly_wait(10)
+
+        try:
+            testb = all_drivers[x].find_element(
+                'xpath', '//*[@id="login-username"]')
+        except NoSuchElementException:
+            print("Cant Find element closing")
+            all_drivers[x].close()
+
         testb.send_keys(Keys.CONTROL + 'a', Keys.BACKSPACE)
         time.sleep(2)
         testb.send_keys(acc[x])
-        testbc = all_drivers[x].find_element(
-            "xpath", '//*[@id="login-password"]')
+
+        try:
+            testbc = all_drivers[x].find_element(
+                "xpath", '//*[@id="login-password"]')
+        except NoSuchElementException:
+            print("Cant Find element closing")
+            all_drivers[x].close()
+
         testbc.send_keys(passwrd[x])
-        testa = all_drivers[x].find_element("xpath", '//*[@id="login-button"]')
-        time.sleep(4)
+
+        try:
+            testa = all_drivers[x].find_element("xpath", '//*[@id="login-button"]')
+        except NoSuchElementException:
+            time.sleep(4)
+            all_drivers[x].close()
+
         testa.click()
         time.sleep(5)
 
@@ -83,10 +95,14 @@ def play_song(songlink):
             "xpath", '//*[@id="onetrust-close-btn-container"]/button')
         testu.click()
         time.sleep(random.randint(2, 5))
-        # Plays Desired Track
-        playbutton = all_drivers[x].find_element("xpath",
-                                                 '//*[@id="main"]/div/div[2]/div[3]/div[1]/div[2]/div[2]/div/div/div[2]/main/section/div[3]/div[4]/div/div/div/div/div/button')
+        try:
+            # Plays Desired Track
+            playbutton = all_drivers[x].find_element("xpath",
+                                                     '//*[@id="main"]/div/div[2]/div[3]/div[1]/div[2]/div[2]/div/div/div[2]/main/section/div[3]/div[4]/div/div/div/div/div/button')
+        except NoSuchElementException:
+            all_drivers[x].close()
         playbutton.click()
+
         # Turns on repeat
         repeat = all_drivers[x].find_element("xpath",
                                              '//*[@id="main"]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[2]/button[2]')
@@ -95,6 +111,7 @@ def play_song(songlink):
         repeat = all_drivers[x].find_element("xpath",
                                              '//*[@id="main"]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[2]/button[2]')
         repeat.click()
+        time.sleep(4)
 
 
 # Plays random song to throw off algorithm
@@ -122,4 +139,8 @@ def play_random_song():
         time.sleep(3)
         # Time to play artist randomly
         time.sleep(random.randint(60, 80))
-# Plays random song to throw off algorithm
+
+
+def quit_browser():
+    x = len(acc)
+    all_drivers[x].quit()
