@@ -10,9 +10,6 @@ import random
 # Driver array
 all_drivers = []
 
-global min_time_to_play
-global max_time_to_play
-
 
 def get_artist(artist_file):
     with open(artist_file, newline='') as f:
@@ -111,7 +108,6 @@ def play_song(songlink):
         repeat = all_drivers[x].find_element("xpath",
                                              '//*[@id="main"]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[2]/button[2]')
         repeat.click()
-        time.sleep(4)
 
 
 # Plays random song to throw off algorithm
