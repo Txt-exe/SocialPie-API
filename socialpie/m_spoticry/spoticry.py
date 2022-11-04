@@ -37,6 +37,7 @@ def open_accounts(accounts):
             all_drivers.append(driver)
 
 
+
 # logs in to Spotify using accounts list
 def load_spot():
     print("grabbing accounts")
