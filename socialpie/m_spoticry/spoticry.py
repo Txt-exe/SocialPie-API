@@ -54,7 +54,7 @@ def load_spot():
                 'xpath', '//*[@id="login-username"]')
         except NoSuchElementException:
             print("Cant Find element closing")
-            all_drivers[x].close()
+            all_drivers[x].quit()
 
         testb.send_keys(Keys.CONTROL + 'a', Keys.BACKSPACE)
         time.sleep(2)
@@ -65,7 +65,7 @@ def load_spot():
                 "xpath", '//*[@id="login-password"]')
         except NoSuchElementException:
             print("Cant Find element closing")
-            all_drivers[x].close()
+            all_drivers[x].quit()
 
         testbc.send_keys(passwrd[x])
 
@@ -73,7 +73,7 @@ def load_spot():
             testa = all_drivers[x].find_element("xpath", '//*[@id="login-button"]')
         except NoSuchElementException:
             time.sleep(4)
-            all_drivers[x].close()
+            all_drivers[x].quit()
 
         testa.click()
         print("Logged in")
