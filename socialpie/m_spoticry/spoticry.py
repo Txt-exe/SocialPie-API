@@ -37,7 +37,6 @@ def open_accounts(accounts):
             all_drivers.append(driver)
 
 
-
 # logs in to Spotify using accounts list
 def load_spot():
     print("grabbing accounts")
@@ -45,10 +44,10 @@ def load_spot():
     for x in range(len(acc)):
         pass
         # Logs in to Spotify
-        print(" Logging in with: ", acc[x])
+        print(" Logging in with: ", acc[x], "in browser number", all_drivers[x])
         all_drivers[x].get(
             "https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F")
-        all_drivers[x].implicitly_wait(10)
+        all_drivers[x].implicitly_wait(5)
 
         try:
             testb = all_drivers[x].find_element(
@@ -77,6 +76,7 @@ def load_spot():
             all_drivers[x].close()
 
         testa.click()
+        print("Logged in")
         time.sleep(5)
 
 
@@ -86,7 +86,7 @@ def play_song(songlink):
     for x in range(len(acc)):
         # Gets Desired Track
         all_drivers[x].get(songlink)
-        print("Logged in")
+        print("Found track")
         time.sleep(9)
         # Closes trust function window
         testu = all_drivers[x].find_element(
@@ -100,6 +100,7 @@ def play_song(songlink):
         except NoSuchElementException:
             all_drivers[x].close()
         playbutton.click()
+        print("Playing")
 
         # Turns on repeat
         repeat = all_drivers[x].find_element("xpath",
