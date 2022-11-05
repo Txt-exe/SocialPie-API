@@ -78,6 +78,16 @@ def load_spot():
         testa.click()
         print("Logged in")
         time.sleep(5)
+        if (all_drivers[x].current_url == "https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify"
+                                          ".com%2F"):
+            all_drivers[x].refresh()
+            print("Log in not found...quiting")
+            time.sleep(3)
+            all_drivers[x].quit()
+
+
+        else:
+            continue
 
 
 # Plays specific song [takes link as parameter]
@@ -127,6 +137,7 @@ def play_random_song():
                                                  '/html/body/div[4]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[1]/button[1]')
         randomnize.click()
         # Time to play artist randomly
+
 
 def quit_browser():
     x = len(acc)
