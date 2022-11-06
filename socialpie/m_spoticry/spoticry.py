@@ -159,4 +159,6 @@ def play_random_song(artist_a):
 
 def quit_browser():
     x = len(acc)
-    all_drivers[x].quit()
+    for x in range(len(acc)):
+
+        all_drivers[x].quit()
