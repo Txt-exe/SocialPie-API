@@ -98,7 +98,7 @@ def play_song(*songlink):
         raise s_exceptions.FunctionNeedsInput(play_song)
         os.exit()
     elif songlink != type(test_string):
-        raise s_exceptions.WrongInput(play_song)
+        raise s_exceptions.LoadAccountsFirst(play_song)
         os.exit()
     else:
 
@@ -133,20 +133,28 @@ def play_song(*songlink):
 
 
 # Plays random song to throw off algorithm
-def play_random_song():
-    x = len(acc)
-    for x in range(len(acc)):
-        print('Playing Random Artist to play based off selection...')
-        all_drivers[x].get(random.choice(artist_a))
-        time.sleep(4)
-        randomplay = all_drivers[x].find_element("xpath",
-                                                 '//*[@id="main"]/div/div[2]/div[3]/div[1]/div[2]/div[2]/div/div/div[2]/main/section/div/div[2]/div[2]/div[4]/div/div/div/div/div/button')
-        randomplay.click()
-        time.sleep(3)
-        randomnize = all_drivers[x].find_element("xpath",
-                                                 '/html/body/div[4]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[1]/button[1]')
-        randomnize.click()
-        # Time to play artist randomly
+def play_random_song(artist_a):
+    if len(artist_a) < 1:
+        raise s_exceptions.FunctionNeedsInput(play_song)
+        os.exit()
+    elif artist_a != type(test_string):
+        raise s_exceptions.LoadAccountsFirst(play_song)
+        os.exit()
+    else:
+
+        x = len(acc)
+        for x in range(len(acc)):
+            print('Playing Random Artist to play based off selection...')
+            all_drivers[x].get(random.choice(artist_a))
+            time.sleep(4)
+            randomplay = all_drivers[x].find_element("xpath",
+                                                     '//*[@id="main"]/div/div[2]/div[3]/div[1]/div[2]/div[2]/div/div/div[2]/main/section/div/div[2]/div[2]/div[4]/div/div/div/div/div/button')
+            randomplay.click()
+            time.sleep(3)
+            randomnize = all_drivers[x].find_element("xpath",
+                                                     '/html/body/div[4]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[1]/button[1]')
+            randomnize.click()
+            # Time to play artist randomly
 
 
 def quit_browser():
