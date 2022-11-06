@@ -93,15 +93,11 @@ def load_spot():
 
 
 # Plays specific song [takes link as parameter]
-def play_song(*songlink):
+def play_song(songlink):
     if len(songlink) < 1:
         raise s_exceptions.FunctionNeedsInput(play_song)
         os.exit()
-    elif songlink != type(test_string):
-        raise s_exceptions.LoadAccountsFirst(play_song)
-        os.exit()
-    else:
-
+    elif isinstance(songlink, str):
         x = len(acc)
         for x in range(len(acc)):
             # Gets Desired Track
@@ -130,6 +126,11 @@ def play_song(*songlink):
             repeat = all_drivers[x].find_element("xpath",
                                                  '//*[@id="main"]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[2]/button[2]')
             repeat.click()
+
+    else:
+        raise s_exceptions.LoadAccountsFirst()
+        os.exit()
+
 
 
 # Plays random song to throw off algorithm
