@@ -3,13 +3,14 @@ from selenium import webdriver
 from selenium.common import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
+from socialpie.m_spoticry import s_exceptions
 import time
 import csv
 import random
 
 # Driver array
 all_drivers = []
-
+test_string = ""
 
 def get_artist(artist_file):
     with open(artist_file, newline='') as f:
@@ -91,35 +92,43 @@ def load_spot():
 
 
 # Plays specific song [takes link as parameter]
-def play_song(songlink):
-    x = len(acc)
-    for x in range(len(acc)):
-        # Gets Desired Track
-        all_drivers[x].get(songlink)
-        print("Found track")
-        time.sleep(9)
-        # Closes trust function window
-        testu = all_drivers[x].find_element(
-            "xpath", '//*[@id="onetrust-close-btn-container"]/button')
-        testu.click()
-        time.sleep(random.randint(2, 5))
-        try:
-            # Plays Desired Track
-            playbutton = all_drivers[x].find_element("xpath",
-                                                     '//*[@id="main"]/div/div[2]/div[3]/div[1]/div[2]/div[2]/div/div/div[2]/main/section/div[3]/div[4]/div/div/div/div/div/button')
-        except NoSuchElementException:
-            all_drivers[x].close()
-        playbutton.click()
-        print("Playing")
+def play_song(*songlink):
+    if len(songlink) < 1:
+        raise s_exceptions.FunctionNeedsInput(play_song)
+        os.exit()
+    elif songlink != type(test_string):
+        raise s_exceptions.WrongInput(play_song)
+        os.exit()
+    else:
 
-        # Turns on repeat
-        repeat = all_drivers[x].find_element("xpath",
-                                             '//*[@id="main"]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[2]/button[2]')
-        repeat.click()
-        time.sleep(random.randint(2, 4))
-        repeat = all_drivers[x].find_element("xpath",
-                                             '//*[@id="main"]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[2]/button[2]')
-        repeat.click()
+        x = len(acc)
+        for x in range(len(acc)):
+            # Gets Desired Track
+            all_drivers[x].get(songlink)
+            print("Found track")
+            time.sleep(9)
+            # Closes trust function window
+            testu = all_drivers[x].find_element(
+                "xpath", '//*[@id="onetrust-close-btn-container"]/button')
+            testu.click()
+            time.sleep(random.randint(2, 5))
+            try:
+                # Plays Desired Track
+                playbutton = all_drivers[x].find_element("xpath",
+                                                         '//*[@id="main"]/div/div[2]/div[3]/div[1]/div[2]/div[2]/div/div/div[2]/main/section/div[3]/div[4]/div/div/div/div/div/button')
+            except NoSuchElementException:
+                all_drivers[x].close()
+            playbutton.click()
+            print("Playing")
+
+            # Turns on repeat
+            repeat = all_drivers[x].find_element("xpath",
+                                                 '//*[@id="main"]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[2]/button[2]')
+            repeat.click()
+            time.sleep(random.randint(2, 4))
+            repeat = all_drivers[x].find_element("xpath",
+                                                 '//*[@id="main"]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/div[2]/button[2]')
+            repeat.click()
 
 
 # Plays random song to throw off algorithm
