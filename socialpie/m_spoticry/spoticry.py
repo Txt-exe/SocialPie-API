@@ -12,6 +12,7 @@ import random
 all_drivers = []
 test_string = ""
 
+
 def get_artist(artist_file):
     with open(artist_file, newline='') as f:
         reader = csv.reader(f)
