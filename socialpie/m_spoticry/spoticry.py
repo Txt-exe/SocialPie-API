@@ -97,6 +97,9 @@ def play_song(songlink):
     if len(songlink) < 1:
         raise s_exceptions.FunctionNeedsInput(play_song)
         os.exit()
+    elif "open.spotify" and "track" not in songlink:
+        raise s_exceptions.SpotifyLinkNotFound(play_song)
+
     elif isinstance(songlink, str):
         x = len(acc)
         for x in range(len(acc)):
@@ -132,7 +135,6 @@ def play_song(songlink):
         os.exit()
 
 
-
 # Plays random song to throw off algorithm
 def play_random_song(artist_a):
     if len(artist_a) < 1:
@@ -161,5 +163,4 @@ def play_random_song(artist_a):
 def quit_browser():
     x = len(acc)
     for x in range(len(acc)):
-
         all_drivers[x].quit()

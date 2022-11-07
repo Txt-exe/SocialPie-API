@@ -8,3 +8,6 @@ class FunctionNeedsInput(TypeError):
 
 class LoadAccountsFirst(NameError):
        print("")
+
+class SpotifyLinkNotFound(ConnectionError):
+    print("")
