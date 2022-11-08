@@ -18,8 +18,6 @@ namess = "C:\\Users\\Chiave\\PycharmProjects\\social-api-data\\d_instacram\\name
 
 
 def create_accounts(first_namess):
-
-
     with open(first_namess,
               newline='') as f:
         reader = csv.reader(f)
@@ -38,8 +36,10 @@ def create_accounts(first_namess):
     copy_button.click()
     copy_button.send_keys(Keys.CONTROL, 'c')
     time.sleep(2)
+    driver.execute_script("window.open('');")
+    driver.switch_to.window(driver.window_handles[1])
     driver.get("https://www.instagram.com/accounts/emailsignup/")
-    time.sleep(7)
+    time.sleep(3)
 
     try:
         email = driver.find_element(By.CSS_SELECTOR, "input[name='emailOrPhone']")
@@ -70,15 +70,23 @@ def create_accounts(first_namess):
     except NoSuchElementException:
         print("didn't find input[name='password']")
         driver.quit()
-    pswrd.send_keys(password)
+    pswrd.send_keys("ThisisMyPassword1$234")
     time.sleep(2)
 
     email.send_keys(Keys.CONTROL, 'a')
     email.send_keys(Keys.CONTROL, 'c')
 
     if path.exists("accounts.txt") and path.isfile("accounts.txt"):
-        s = pyperclip.paste()
+        ems = pyperclip.paste()
         with open('accounts.txt', 'w') as g:
-            g.write(s)
+            g.write(ems)
+            g.write(':')
+            g.write('ThisisMyPassword1$234')
+            time.sleep(2)
+    submit_go = driver.find_element(By.CSS_SELECTOR, "//button[@type='submit']")
+    submit_go.click()
+    time.sleep(5)
+
+    birth_month = driver.find_element(By.CLASS_NAME, "Month")
 
 create_accounts(namess)
