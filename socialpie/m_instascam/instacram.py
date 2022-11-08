@@ -87,6 +87,5 @@ def create_accounts(first_namess):
     submit_go.click()
     time.sleep(5)
 
-    birth_month = driver.find_element(By.CLASS_NAME, "Month")
 
 create_accounts(namess)
